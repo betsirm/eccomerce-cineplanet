@@ -3,9 +3,16 @@ import { red, blue } from '@mui/material/colors';
 import fondo from '../../assets/images/fondo4.jpg'
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import GoogleLogin from 'react-google-login';
 import '../../assets/scss/views/login.scss'
+import { idClient } from '../../config';
+import {useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as sessionActions from '../../actions/sessionActions'
 
-const Login = () => {
+const Login = ({loginRequest}) => {
+
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,6 +21,12 @@ const Login = () => {
       email: data.get('email'),
       password: data.get('password'),
     });
+  }
+
+  const responseGoogle = (data) => {
+    console.log(data)
+    loginRequest(data)
+    navigate('../candyStore')
   }
 
   return (
@@ -111,9 +124,19 @@ const Login = () => {
                   mt="1rem"
                   
                 >
-                  <IconButton sx={{ m: 1 }}>
-                    <GoogleIcon  sx={{ color: red[500] }}/>
-                  </IconButton>
+                  <GoogleLogin
+                    clientId={idClient}
+                    render={renderProps => (
+                      <IconButton sx={{ m: 1 }} onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                        <GoogleIcon  sx={{ color: red[500] }}/>
+                      </IconButton>
+                    )}
+                    buttonText="Login"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                    cookiePolicy={'single_host_origin'}
+                  />
+                  
                   <IconButton sx={{ m: 1 }}>
                     <FacebookIcon  sx={{ color: blue[500] }}/>
                   </IconButton>
@@ -126,4 +149,8 @@ const Login = () => {
   )
 }
 
-export default Login
+const mapStateToProps = reducers => {
+  return reducers.sessionReducer;
+}
+
+export default connect(mapStateToProps,sessionActions)(Login)

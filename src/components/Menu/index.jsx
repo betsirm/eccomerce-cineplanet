@@ -4,6 +4,7 @@ import Logo from '../../assets/images/Logo-Cineplanet.png'
 import { useState } from 'react';
 import '../../assets/scss/components/menu.scss'
 import { useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const pages = [{
         name:'Home',
@@ -11,12 +12,13 @@ const pages = [{
     {
         name:'Dulceria',
         link:'candystore'
-    },
-    {   name:'Login',
-        link:'login'
     }];
+const settings = [{   
+    name:'Logout',
+    link:'logout'
+}]
 
-const Menu = () => {
+const Menu = ({user}) => {
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
@@ -104,7 +106,7 @@ const Menu = () => {
                 <Box sx={{ flexGrow: 0 }}>
                     <Tooltip title="Open settings">
                         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                            <Avatar alt={user.name} src={user.imageUrl} />
                         </IconButton>
                     </Tooltip>
                     <MenuBar
@@ -123,11 +125,26 @@ const Menu = () => {
                         open={Boolean(anchorElUser)}
                         onClose={handleCloseUserMenu}
                     >
-                         {/* {settings.map((setting) => (
-                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                            <Typography textAlign="center">{setting}</Typography>
-                        </MenuItem>
-                        ))}  */}
+                         {Object.keys(user).length>0?
+                            settings.map((setting) => (
+                            <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
+                                <Typography 
+                                textAlign="center"
+                                onClick={()=> handleClickNavMenu(setting.link)}
+                                >
+                                    {setting.name}
+                                </Typography>
+                            </MenuItem>
+                            )):
+                            <MenuItem key='userInvited' onClick={handleCloseUserMenu}>
+                                <Typography 
+                                textAlign="center"
+                                onClick={()=> handleClickNavMenu('login')}
+                                >
+                                    Login
+                                </Typography>
+                            </MenuItem>
+                        } 
                     </MenuBar>
                 </Box>
             </Toolbar>
@@ -135,5 +152,9 @@ const Menu = () => {
     </AppBar>
   )
 }
-
-export default Menu
+const mapStateToProps = reducers => {
+    return {
+        user:reducers.sessionReducer.user,
+    }
+}
+export default connect(mapStateToProps)(Menu)
