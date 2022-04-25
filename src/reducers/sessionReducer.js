@@ -5,7 +5,7 @@ const INITIAL_STATE = {
     token:null
 }
 
-export default (state = INITIAL_STATE, action) => {
+const sessionReducer = (state = INITIAL_STATE, action) => {
 
     switch (action.type) {
         case LOGIN:
@@ -14,10 +14,10 @@ export default (state = INITIAL_STATE, action) => {
                 token:action.payload.tokenId,
                 user:action.payload.profileObj
             }
-            break;
     
         default:
            return state
     }
 
 }
+export default sessionReducer
