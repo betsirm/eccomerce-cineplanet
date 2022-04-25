@@ -12,8 +12,8 @@ initialAxios();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const initialState={}
-const composeEnhancers = process.env.NODE_ENV === 'development'? window.__REDUX_DEVTOOLS_EXTENSION__:(null || compose);
-const store = createStore(reducer,initialState,composeEnhancers(applyMiddleware(reduxThunk)))
+const composeEnhancers = process.env.NODE_ENV === 'development'? window.__REDUX_DEVTOOLS_EXTENSION__:(null);
+const store = createStore(reducer,initialState,compose(applyMiddleware(reduxThunk),composeEnhancers()))
 
 root.render(
   <Provider store={store}>
