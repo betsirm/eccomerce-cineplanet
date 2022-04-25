@@ -1,0 +1,30 @@
+.login{
+    &__link{
+        a {
+            text-decoration: none;
+        }
+    }
+
+    &__social{
+        position: relative;
+        margin-top: 1rem;
+        .MuiGrid-root{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        hr{
+            position: absolute;
+            width: 100%;
+            opacity: .4;
+        }
+
+        p{
+            position: absolute;
+            background-color: white;
+            padding: 0 1rem;
+            color: rgb(110, 110, 110);
+        }
+    }
+}
