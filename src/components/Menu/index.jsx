@@ -1,4 +1,4 @@
-import { AppBar, Avatar, Box, Button, Container, IconButton,Menu as MenuBar, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material'
+import { Avatar, AppBar, Box, Button, Container, IconButton,Menu as MenuBar, MenuItem, Tooltip, Toolbar, Typography } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import Logo from '../../assets/images/Logo-Cineplanet.png'
 import { useState } from 'react';
@@ -34,7 +34,7 @@ const Menu = () => {
     };
 
     const handleClickNavMenu = (page) => {
-        page == 'Home' ? 
+        page === 'Home' ? 
         navigate(''):
         navigate(page);
       };
@@ -100,7 +100,7 @@ const Menu = () => {
                     ))}
                 </Box>
 
-                {/* <Box sx={{ flexGrow: 0 }}>
+                <Box sx={{ flexGrow: 0 }}>
                     <Tooltip title="Open settings">
                         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                         <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -122,13 +122,13 @@ const Menu = () => {
                         open={Boolean(anchorElUser)}
                         onClose={handleCloseUserMenu}
                     >
-                         {settings.map((setting) => (
+                         {/* {settings.map((setting) => (
                         <MenuItem key={setting} onClick={handleCloseUserMenu}>
                             <Typography textAlign="center">{setting}</Typography>
                         </MenuItem>
-                        ))} 
+                        ))}  */}
                     </Menu>
-                </Box> */}
+                </Box>
             </Toolbar>
         </Container>
     </AppBar>

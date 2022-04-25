@@ -6,7 +6,6 @@ import { useState } from 'react';
 
 const CardCandy = ({candy}) => {
 
-  const theme = useTheme();
   const [cont, setCont] = useState(0)
 
   const handleAdd = () => {
