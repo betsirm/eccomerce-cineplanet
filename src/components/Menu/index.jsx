@@ -29,8 +29,9 @@ const Menu = () => {
       setAnchorElUser(event.currentTarget);
     };
   
-    const handleCloseNavMenu = () => {
-      setAnchorElNav(null);
+    const handleCloseNavMenu = (page) => {
+        navigate(page)
+        setAnchorElNav(null);
     };
 
     const handleClickNavMenu = (page) => {
@@ -79,7 +80,7 @@ const Menu = () => {
                         }}
                     >
                         {pages.map((page) => (
-                        <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                        <MenuItem key={page.name} onClick={()=>handleCloseNavMenu(page.link)}>
                             <Typography textAlign="center">{page.name}</Typography>
                         </MenuItem>
                         ))}
