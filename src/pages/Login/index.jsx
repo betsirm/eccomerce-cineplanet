@@ -26,6 +26,7 @@ const Login = ({loginRequest}) => {
   const responseGoogle = (data) => {
     console.log(data)
     loginRequest(data)
+    if(false)
     navigate('../candyStore')
   }
 
