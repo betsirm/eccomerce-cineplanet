@@ -1,4 +1,3 @@
-import { useTheme } from '@emotion/react';
 import { Box, Card, CardContent, CardMedia, IconButton, Typography, TextField } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';

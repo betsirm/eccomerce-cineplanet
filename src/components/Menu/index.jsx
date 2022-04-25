@@ -106,7 +106,7 @@ const Menu = () => {
                         <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                         </IconButton>
                     </Tooltip>
-                    <Menu
+                    <MenuBar
                         sx={{ mt: '45px' }}
                         id="menu-appbar"
                         anchorEl={anchorElUser}
@@ -127,7 +127,7 @@ const Menu = () => {
                             <Typography textAlign="center">{setting}</Typography>
                         </MenuItem>
                         ))}  */}
-                    </Menu>
+                    </MenuBar>
                 </Box>
             </Toolbar>
         </Container>
